@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="airport"
+            type="com.peterstev.nc_flightradar.models.airport.Datum" />
+    </data>
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorOffWhite"
+        app:cardCornerRadius="5dp"
+        app:cardElevation="10dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/airport_country"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:fontFamily="@font/roboto_medium"
+                android:text="@{airport.countryIso2}"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/airport_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:layout_marginStart="50dp"
+                android:layout_marginEnd="5dp"
+                android:background="@drawable/curve_background"
+                android:drawableEnd="@drawable/ic_airplane_white_18dp"
+                android:drawablePadding="5dp"
+                android:fontFamily="@font/roboto_regular"
+                android:padding="5dp"
+                android:text="@{airport.airportName}"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                android:textColor="@color/colorWhite"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/airport_country" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/airport_location"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/left_curve_drawable"
+                android:drawableStart="@drawable/ic_location_on_black_24dp"
+                android:drawablePadding="5dp"
+                android:fontFamily="@font/roboto_regular"
+                android:padding="5dp"
+                android:text="@{airport.timezone}"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                android:textColor="@color/colorWhite"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/airport_name" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+</layout>
