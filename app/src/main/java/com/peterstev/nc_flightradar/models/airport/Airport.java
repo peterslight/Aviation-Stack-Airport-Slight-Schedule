@@ -17,12 +17,20 @@ public class Airport {
     private int id;
     @SerializedName("airport_name")
     private String airportName;
+    @SerializedName("country_name")
+    private String countryName;
+    @Expose
+    private String timezone;
+    @Expose
+    private String latitude;
+    @Expose
+    private String longitude;
+
     @SerializedName("city_iata_code")
     private String cityIataCode;
     @SerializedName("country_iso2")
     private String countryIso2;
-    @SerializedName("country_name")
-    private String countryName;
+
     @SerializedName("geoname_id")
     private String geonameId;
     @Expose
@@ -31,14 +39,9 @@ public class Airport {
     private String iataCode;
     @SerializedName("icao_code")
     private String icaoCode;
-    @Expose
-    private String latitude;
-    @Expose
-    private String longitude;
+
     @SerializedName("phone_number")
-    private Object phoneNumber;
-    @Expose
-    private String timezone;
+    private String phoneNumber;
 
     public String getAirportName() {
         return airportName;
@@ -120,11 +123,11 @@ public class Airport {
         this.longitude = longitude;
     }
 
-    public Object getPhoneNumber() {
+    public String  getPhoneNumber() {
         return phoneNumber;
     }
 
-    public void setPhoneNumber(Object phoneNumber) {
+    public void setPhoneNumber(String  phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 
@@ -138,5 +141,20 @@ public class Airport {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    @Override
+    public String toString() {
+        return "Airport{" +
+                "airportName='" + airportName + '\'' +
+                ", countryName='" + countryName + '\'' +
+                ", timezone='" + timezone + '\'' +
+                ", latitude='" + latitude + '\'' +
+                ", longitude='" + longitude + '\'' +
+                '}';
+    }
+
+    public int getId() {
+        return id;
     }
 }
