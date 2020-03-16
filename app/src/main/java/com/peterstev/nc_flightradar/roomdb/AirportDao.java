@@ -6,17 +6,25 @@ import androidx.room.Insert;
 import androidx.room.Query;
 
 import com.peterstev.nc_flightradar.models.airport.Airport;
+import com.peterstev.nc_flightradar.models.airport.Data;
 
 import java.util.List;
+
+import io.reactivex.Completable;
+import io.reactivex.Flowable;
+
 
 @Dao
 public interface AirportDao {
     @Insert
-    void insert(Airport airport);
+    Completable insert(Airport airport);
+
+    @Insert
+    Completable insertAll(List<Airport> airport);
 
     @Query("DELETE FROM airport_table")
-    void deleteAllAirports();
+    Completable deleteAllAirports();
 
     @Query("SELECT * FROM airport_table ORDER BY id DESC")
-    LiveData<List<Airport>> getAllAirports();
+    Flowable<List<Airport>> getAllAirports();
 }

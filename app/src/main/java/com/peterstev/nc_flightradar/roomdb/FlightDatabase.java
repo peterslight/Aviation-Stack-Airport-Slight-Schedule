@@ -2,20 +2,24 @@ package com.peterstev.nc_flightradar.roomdb;
 
 import android.content.Context;
 
+import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
+import com.peterstev.nc_flightradar.models.airport.Airport;
+
 import static com.peterstev.nc_flightradar.utils.Constants.DATABASE_NAME;
 
-public abstract class AirportDatabase extends RoomDatabase {
+@Database(entities = Airport.class, version = 1)
+public abstract class FlightDatabase extends RoomDatabase {
 
-    private static AirportDatabase instance;
+    private static FlightDatabase instance;
     public abstract AirportDao airportDao();
 
-    public static synchronized AirportDatabase getInstance(Context context){
+    public static synchronized FlightDatabase getInstance(Context context){
         if (instance == null){
             instance = Room.databaseBuilder(context.getApplicationContext(),
-                    AirportDatabase.class, DATABASE_NAME)
+                    FlightDatabase.class, DATABASE_NAME)
                     .fallbackToDestructiveMigration()
                     .build();
         }
