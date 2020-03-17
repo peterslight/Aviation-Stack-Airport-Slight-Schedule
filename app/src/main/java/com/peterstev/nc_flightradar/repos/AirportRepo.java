@@ -54,6 +54,10 @@ public class AirportRepo {
         return airportList;
     }
 
+    public List<Airport> getAllAirportsTest() {
+        return airportDao.getAllAirportsTest();
+    }
+
 
     public void fetchRemoteData() {
         LOGGER("started.........");

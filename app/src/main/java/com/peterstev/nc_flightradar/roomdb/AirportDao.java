@@ -25,4 +25,7 @@ public interface AirportDao {
 
     @Query("SELECT * FROM airport_table ORDER BY id ASC")
     Flowable<List<Airport>> getAllAirports();
+
+    @Query("SELECT * FROM airport_table ORDER BY id ASC")
+    List<Airport> getAllAirportsTest();
 }

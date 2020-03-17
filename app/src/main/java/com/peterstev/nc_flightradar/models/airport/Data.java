@@ -4,9 +4,6 @@ package com.peterstev.nc_flightradar.models.airport;
 import java.util.List;
 import com.google.gson.annotations.Expose;
 
-import javax.annotation.processing.Generated;
-
-@Generated("net.hexar.json2pojo")
 @SuppressWarnings("unused")
 public class Data {
 

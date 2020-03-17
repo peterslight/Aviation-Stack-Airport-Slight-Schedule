@@ -27,6 +27,14 @@ import com.peterstev.nc_flightradar.view_models.RoutesViewModel;
 
 import java.util.List;
 
+import static com.peterstev.nc_flightradar.utils.Constants.ARRIVALS_KEY;
+import static com.peterstev.nc_flightradar.utils.Constants.ARRIVALS_LAT;
+import static com.peterstev.nc_flightradar.utils.Constants.ARRIVALS_LON;
+import static com.peterstev.nc_flightradar.utils.Constants.ARRIVALS_NAME;
+import static com.peterstev.nc_flightradar.utils.Constants.DEPARTURES_KEY;
+import static com.peterstev.nc_flightradar.utils.Constants.DEPARTURE_LAT;
+import static com.peterstev.nc_flightradar.utils.Constants.DEPARTURE_LON;
+import static com.peterstev.nc_flightradar.utils.Constants.DEPARTURE_NAME;
 import static com.peterstev.nc_flightradar.utils.Constants.LOGGER;
 
 public class RouteActivity extends AppCompatActivity implements RoutesContract, RouteAdapter.OnClick {
@@ -59,8 +67,8 @@ public class RouteActivity extends AppCompatActivity implements RoutesContract, 
         AppCompatTextView tvArr = binding.routeTvDestination;
         dialog = binding.homeProgress;
 
-        LOGGER(depAirport.getLatitude() +", "+ depAirport.getLongitude());
-        LOGGER(arrAirport.getLatitude() +", "+ arrAirport.getLongitude());
+        LOGGER(depAirport.getLatitude() + ", " + depAirport.getLongitude());
+        LOGGER(arrAirport.getLatitude() + ", " + arrAirport.getLongitude());
 
         tvDep.setText(depAirport.getAirportName());
         tvArr.setText(arrAirport.getAirportName());
@@ -101,7 +109,13 @@ public class RouteActivity extends AppCompatActivity implements RoutesContract, 
     @Override
     public void onItemClick(Routes routes) {
         //send to map activity
-        startActivity(new Intent(this, PolyActivity.class));
+        startActivity(new Intent(this, PolyActivity.class)
+                .putExtra(DEPARTURE_LAT, depAirport.getLatitude())
+                .putExtra(DEPARTURE_LON, depAirport.getLongitude())
+                .putExtra(DEPARTURE_NAME, depAirport.getAirportName())
+                .putExtra(ARRIVALS_LAT, arrAirport.getLatitude())
+                .putExtra(ARRIVALS_LON, arrAirport.getLongitude())
+                .putExtra(ARRIVALS_NAME, arrAirport.getAirportName()));
     }
 
 
