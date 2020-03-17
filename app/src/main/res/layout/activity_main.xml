@@ -30,6 +30,8 @@
             android:layout_marginEnd="10dp"
             android:background="@drawable/search_background"
             android:drawableEnd="@drawable/ic_close_black_24dp"
+            android:imeOptions="actionSearch"
+            android:inputType="text"
             android:hint="search for Nigeria"
             android:textColor="@color/colorBlack"
             android:visibility="invisible"
@@ -122,7 +124,7 @@
                 <androidx.appcompat.widget.AppCompatTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="20dp"
+                    android:layout_margin="5dp"
                     android:fontFamily="@font/roboto_medium"
                     android:text="loading.."
                     android:textSize="24sp"

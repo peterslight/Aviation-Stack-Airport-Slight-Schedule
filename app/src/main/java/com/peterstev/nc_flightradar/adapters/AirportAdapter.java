@@ -1,8 +1,9 @@
 package com.peterstev.nc_flightradar.adapters;
 
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.DiffUtil;
@@ -12,11 +13,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.peterstev.nc_flightradar.databinding.AirportItemBinding;
 import com.peterstev.nc_flightradar.models.airport.Airport;
 
-public class DefaultAdapter extends ListAdapter<Airport, DefaultAdapter.DefaultviewHolder> {
+public class AirportAdapter extends ListAdapter<Airport, AirportAdapter.DefaultviewHolder> {
 
     private OnClick listener;
-
-    public DefaultAdapter(OnClick listener) {
+    public AirportAdapter(OnClick listener) {
         super(DIFF_CALLBACK);
         this.listener = listener;
     }
@@ -26,7 +26,6 @@ public class DefaultAdapter extends ListAdapter<Airport, DefaultAdapter.Defaultv
                 @Override
                 public boolean areItemsTheSame(@NonNull Airport oldItem, @NonNull Airport newItem) {
                     return oldItem.getId() == newItem.getId();
-
                 }
 
                 @Override

@@ -3,8 +3,10 @@ package com.peterstev.nc_flightradar.activities;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -15,7 +17,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.peterstev.nc_flightradar.R;
 import com.peterstev.nc_flightradar.databinding.ActivityMainBinding;
-import com.peterstev.nc_flightradar.fragment_contracts.DefaultFragmentsContract;
+import com.peterstev.nc_flightradar.contracts.DefaultFragmentsContract;
 import com.peterstev.nc_flightradar.fragments.ArrivalFragment;
 import com.peterstev.nc_flightradar.fragments.Departurefragment;
 import com.peterstev.nc_flightradar.models.airport.Airport;
@@ -38,6 +40,7 @@ public class MainActivity extends Base implements DefaultFragmentsContract {
     private ImageView backBtn;
     private AppCompatEditText etSearch;
     private TextView tvTitle;
+    private String searchQuery;
 
     @SuppressWarnings("ResultOfMethodCallIgnored")
     @SuppressLint({"ClickableViewAccessibility", "CheckResult"})
@@ -54,16 +57,13 @@ public class MainActivity extends Base implements DefaultFragmentsContract {
         backBtn.setOnClickListener(v -> onBackPressed());
         searchBtn.setOnClickListener(v -> {
             showSearchBar();
-//            new CountDownTimer(3000, 1000) {
-//                @Override
-//                public void onTick(long millisUntilFinished) {
-//                }
-//
-//                @Override
-//                public void onFinish() {
-//                    hideSearchBar();
-//                }
-//            }.start();
+        });
+        etSearch.setOnEditorActionListener((v, actionId, event) -> {
+            if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+                searchQuery = etSearch.getText().toString().trim();
+                return true;
+            }
+            return false;
         });
 
 
@@ -112,28 +112,25 @@ public class MainActivity extends Base implements DefaultFragmentsContract {
         return viewModel;
     }
 
+    private Airport depAirport;
+    private Airport arrAirport;
+
     @Override
     public void onDepartureAirportSelected(Airport airport) {
         tvTitle.setText(R.string.arrival);
         backBtn.setVisibility(View.VISIBLE);
+        depAirport = airport;
         hideSearchBar();
-        addAirportItem(airport);
         saveAndGotoNextFragment(new ArrivalFragment());
     }
 
     @Override
     public void onArrivalAirportSelected(Airport airport) {
-        addAirportItem(airport);
-        List<Airport> selectedItems = getSelectedItems();
+        arrAirport = airport;
         startActivity(new Intent(this, RouteActivity.class)
-                .putExtra(DEPARTURES_KEY, selectedItems.get(0))
-                .putExtra(ARRIVALS_KEY, selectedItems.get(1))
+                .putExtra(DEPARTURES_KEY, depAirport)
+                .putExtra(ARRIVALS_KEY, arrAirport)
         );
         overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
-    }
-
-    @Override
-    public void onComplete() {
-
     }
 }

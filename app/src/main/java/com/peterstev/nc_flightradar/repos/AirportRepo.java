@@ -58,6 +58,7 @@ public class AirportRepo {
         return airportList;
     }
 
+
     public void fetchRemoteData() {
         LOGGER("started.........");
         ApiInterface apiInterface = ApiServiceGenerator.getRetrofit(appContext);
@@ -83,5 +84,4 @@ public class AirportRepo {
             }
         });
     }
-
 }

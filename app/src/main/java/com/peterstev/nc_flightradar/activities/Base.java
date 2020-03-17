@@ -14,7 +14,6 @@ import java.util.List;
 
 public abstract class Base extends AppCompatActivity {
 
-    private List<Airport> selectedItems = new ArrayList<>();
     List<Fragment> oldFragmentList = new ArrayList<>();
     private int count = 0;
 
@@ -33,16 +32,6 @@ public abstract class Base extends AppCompatActivity {
         transaction.commitAllowingStateLoss();
     }
 
-    public List<Airport> getSelectedItems() {
-        return selectedItems;
-    }
-
-    public void addAirportItem(Airport airport) {
-        if (selectedItems.size() == 2)
-            return;
-        selectedItems.add(airport);
-    }
-
     public void saveAndGotoNextFragment(Fragment fragment) {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         Fragment oldFragment = getCurrentFragment(R.id.main_frame);
@@ -55,14 +44,13 @@ public abstract class Base extends AppCompatActivity {
 
     public void onBackPressedImpl() {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        if (oldFragmentList.size() > 0 && selectedItems.size() > 0 ) {
+        if (oldFragmentList.size() > 0) {
             transaction.remove(getCurrentFragment(R.id.main_frame));
             int fragmentPosition = (oldFragmentList.size() - 1);
             transaction.show(oldFragmentList.get(fragmentPosition));
             transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
             transaction.commit();
             oldFragmentList.remove(fragmentPosition);
-            selectedItems.remove(fragmentPosition);
             count = 0;
             if (fragmentPosition == 0) {
 //                showExFab();

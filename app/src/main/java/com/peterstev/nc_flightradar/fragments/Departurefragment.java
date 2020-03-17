@@ -14,9 +14,9 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.peterstev.nc_flightradar.adapters.DefaultAdapter;
+import com.peterstev.nc_flightradar.adapters.AirportAdapter;
 import com.peterstev.nc_flightradar.databinding.DefaultFragmentBinding;
-import com.peterstev.nc_flightradar.fragment_contracts.DefaultFragmentsContract;
+import com.peterstev.nc_flightradar.contracts.DefaultFragmentsContract;
 import com.peterstev.nc_flightradar.models.airport.Airport;
 import com.peterstev.nc_flightradar.view_models.MainViewModel;
 
@@ -24,7 +24,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 
 @SuppressLint("CheckResult")
-public class Departurefragment extends Fragment implements DefaultAdapter.OnClick {
+public class Departurefragment extends Fragment implements AirportAdapter.OnClick {
 
     private DefaultFragmentBinding binding;
     private Context context;
@@ -56,7 +56,7 @@ public class Departurefragment extends Fragment implements DefaultAdapter.OnClic
         RecyclerView recyclerView = binding.mainRecyclerview;
         recyclerView.setLayoutManager(new LinearLayoutManager(context));
         recyclerView.setHasFixedSize(true);
-        DefaultAdapter adapter = new DefaultAdapter(this);
+        AirportAdapter adapter = new AirportAdapter(this);
         recyclerView.setAdapter(adapter);
         viewModel = departureContract.getViewModel();
         viewModel.getAllAirPorts()
