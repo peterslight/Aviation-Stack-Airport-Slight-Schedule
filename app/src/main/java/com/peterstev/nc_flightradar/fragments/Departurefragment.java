@@ -10,36 +10,32 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.databinding.DataBindingComponent;
-import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.peterstev.nc_flightradar.R;
 import com.peterstev.nc_flightradar.adapters.DefaultAdapter;
 import com.peterstev.nc_flightradar.databinding.DefaultFragmentBinding;
 import com.peterstev.nc_flightradar.fragment_contracts.DefaultFragmentsContract;
+import com.peterstev.nc_flightradar.models.airport.Airport;
 import com.peterstev.nc_flightradar.view_models.MainViewModel;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 
-import static com.peterstev.nc_flightradar.utils.Constants.LOGGER;
-
 @SuppressLint("CheckResult")
-public class Defaultfragment extends Fragment {
+public class Departurefragment extends Fragment implements DefaultAdapter.OnClick {
 
     private DefaultFragmentBinding binding;
     private Context context;
-    private DefaultFragmentsContract.Departure departureContract;
+    private DefaultFragmentsContract departureContract;
     private MainViewModel viewModel;
 
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
         try {
-            departureContract = (DefaultFragmentsContract.Departure) context;
+            departureContract = (DefaultFragmentsContract) context;
         } catch (ClassCastException e) {
             Toast.makeText(context, e.getMessage(), Toast.LENGTH_SHORT).show();
         }
@@ -60,13 +56,17 @@ public class Defaultfragment extends Fragment {
         RecyclerView recyclerView = binding.mainRecyclerview;
         recyclerView.setLayoutManager(new LinearLayoutManager(context));
         recyclerView.setHasFixedSize(true);
-        DefaultAdapter adapter = new DefaultAdapter();
+        DefaultAdapter adapter = new DefaultAdapter(this);
         recyclerView.setAdapter(adapter);
         viewModel = departureContract.getViewModel();
-        viewModel.fetchRemoteData();
         viewModel.getAllAirPorts()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(adapter::submitList);
+    }
+
+    @Override
+    public void onItemClick(Airport airport) {
+        departureContract.onDepartureAirportSelected(airport);
     }
 }

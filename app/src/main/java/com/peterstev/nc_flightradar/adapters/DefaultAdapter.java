@@ -14,9 +14,11 @@ import com.peterstev.nc_flightradar.models.airport.Airport;
 
 public class DefaultAdapter extends ListAdapter<Airport, DefaultAdapter.DefaultviewHolder> {
 
+    private OnClick listener;
 
-    public DefaultAdapter() {
+    public DefaultAdapter(OnClick listener) {
         super(DIFF_CALLBACK);
+        this.listener = listener;
     }
 
     private static DiffUtil.ItemCallback<Airport> DIFF_CALLBACK =
@@ -24,12 +26,12 @@ public class DefaultAdapter extends ListAdapter<Airport, DefaultAdapter.Defaultv
                 @Override
                 public boolean areItemsTheSame(@NonNull Airport oldItem, @NonNull Airport newItem) {
                     return oldItem.getId() == newItem.getId();
+
                 }
 
                 @Override
                 public boolean areContentsTheSame(@NonNull Airport oldItem, @NonNull Airport newItem) {
-                    return oldItem.getAirportName().equals(newItem.getAirportName()) && oldItem.getCountryName().equals(newItem.getCountryName())
-                            && oldItem.getTimezone().equals(newItem.getTimezone());
+                    return oldItem.getAirportName().equals(newItem.getAirportName()) && oldItem.getTimezone().equals(newItem.getTimezone());
                 }
             };
 
@@ -47,7 +49,7 @@ public class DefaultAdapter extends ListAdapter<Airport, DefaultAdapter.Defaultv
         holder.bindItems(airport);
     }
 
-    static class DefaultviewHolder extends RecyclerView.ViewHolder {
+    class DefaultviewHolder extends RecyclerView.ViewHolder {
         private AirportItemBinding binding;
 
         DefaultviewHolder(AirportItemBinding binding) {
@@ -58,6 +60,11 @@ public class DefaultAdapter extends ListAdapter<Airport, DefaultAdapter.Defaultv
         void bindItems(Airport airport) {
             binding.setAirport(airport);
             binding.executePendingBindings();
+            binding.getRoot().setOnClickListener(v -> listener.onItemClick(airport));
         }
+    }
+
+    public interface OnClick {
+        void onItemClick(Airport airport);
     }
 }

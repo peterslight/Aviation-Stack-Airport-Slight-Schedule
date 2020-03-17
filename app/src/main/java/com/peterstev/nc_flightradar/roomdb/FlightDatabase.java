@@ -25,5 +25,4 @@ public abstract class FlightDatabase extends RoomDatabase {
         }
         return instance;
     }
-
 }

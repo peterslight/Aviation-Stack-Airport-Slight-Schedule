@@ -3,6 +3,7 @@ package com.peterstev.nc_flightradar.roomdb;
 import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Insert;
+import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 
 import com.peterstev.nc_flightradar.models.airport.Airport;
@@ -16,10 +17,10 @@ import io.reactivex.Flowable;
 
 @Dao
 public interface AirportDao {
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     Completable insert(Airport airport);
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     Completable insertAll(List<Airport> airport);
 
     @Query("DELETE FROM airport_table")

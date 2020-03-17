@@ -23,16 +23,15 @@
             tools:ignore="ContentDescription" />
 
         <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/main_et_search"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
-            android:id="@+id/main_et_search"
             android:layout_marginEnd="10dp"
             android:background="@drawable/search_background"
             android:drawableEnd="@drawable/ic_close_black_24dp"
-            android:hint="Country | Airport | Location"
+            android:hint="search for Nigeria"
             android:textColor="@color/colorBlack"
-            android:textColorHint="@color/colorBlack"
             android:visibility="invisible"
             app:layout_constraintBottom_toBottomOf="@id/main_title"
             app:layout_constraintEnd_toEndOf="parent"

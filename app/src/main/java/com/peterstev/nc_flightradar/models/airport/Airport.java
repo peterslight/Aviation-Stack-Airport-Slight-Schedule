@@ -2,17 +2,21 @@
 package com.peterstev.nc_flightradar.models.airport;
 
 import androidx.room.Entity;
+import androidx.room.Index;
 import androidx.room.PrimaryKey;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
+
 import javax.annotation.processing.Generated;
 
 import static com.peterstev.nc_flightradar.utils.Constants.AIRPORT_TABLE;
 
-@Entity(tableName = AIRPORT_TABLE)
-public class Airport {
+@Entity(tableName = AIRPORT_TABLE, indices = {@Index(value = {"airportName", "timezone"},
+        unique = true)})
+public class Airport implements Serializable {
     @PrimaryKey(autoGenerate = true)
     private int id;
     @SerializedName("airport_name")
@@ -123,11 +127,11 @@ public class Airport {
         this.longitude = longitude;
     }
 
-    public String  getPhoneNumber() {
+    public String getPhoneNumber() {
         return phoneNumber;
     }
 
-    public void setPhoneNumber(String  phoneNumber) {
+    public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 
