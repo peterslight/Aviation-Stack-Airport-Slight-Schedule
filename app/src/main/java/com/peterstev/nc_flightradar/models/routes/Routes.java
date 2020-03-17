@@ -4,10 +4,12 @@ package com.peterstev.nc_flightradar.models.routes;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import javax.inject.Inject;
+
 public class Routes {
 
     @Expose
-    private Object aircraft;
+    private String  aircraft;
     @Expose
     private Airline airline;
     @Expose
@@ -21,13 +23,29 @@ public class Routes {
     @SerializedName("flight_status")
     private String flightStatus;
     @Expose
-    private Object live;
+    private String live;
+    
+    public Routes(){
 
-    public Object getAircraft() {
+    }
+
+    @Inject
+    public Routes(String  aircraft, Airline airline, Arrival arrival, Departure departure, Flight flight, String flightDate, String flightStatus, String live) {
+        this.aircraft = aircraft;
+        this.airline = airline;
+        this.arrival = arrival;
+        this.departure = departure;
+        this.flight = flight;
+        this.flightDate = flightDate;
+        this.flightStatus = flightStatus;
+        this.live = live;
+    }
+
+    public String getAircraft() {
         return aircraft;
     }
 
-    public void setAircraft(Object aircraft) {
+    public void setAircraft(String aircraft) {
         this.aircraft = aircraft;
     }
 
@@ -79,11 +97,11 @@ public class Routes {
         this.flightStatus = flightStatus;
     }
 
-    public Object getLive() {
+    public String getLive() {
         return live;
     }
 
-    public void setLive(Object live) {
+    public void setLive(String live) {
         this.live = live;
     }
 

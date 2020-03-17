@@ -22,23 +22,23 @@
             app:layout_constraintTop_toTopOf="@id/main_title"
             tools:ignore="ContentDescription" />
 
-        <androidx.appcompat.widget.AppCompatEditText
-            android:id="@+id/main_et_search"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp"
-            android:background="@drawable/search_background"
-            android:drawableEnd="@drawable/ic_close_black_24dp"
-            android:imeOptions="actionSearch"
-            android:inputType="text"
-            android:hint="search for Nigeria"
-            android:textColor="@color/colorBlack"
-            android:visibility="invisible"
-            app:layout_constraintBottom_toBottomOf="@id/main_title"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@id/main_title" />
+<!--        <androidx.appcompat.widget.AppCompatEditText-->
+<!--            android:id="@+id/main_et_search"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginStart="10dp"-->
+<!--            android:layout_marginEnd="10dp"-->
+<!--            android:background="@drawable/search_background"-->
+<!--            android:drawableEnd="@drawable/ic_close_black_24dp"-->
+<!--            android:imeOptions="actionSearch"-->
+<!--            android:inputType="text"-->
+<!--            android:hint="search for Nigeria"-->
+<!--            android:textColor="@color/colorBlack"-->
+<!--            android:visibility="invisible"-->
+<!--            app:layout_constraintBottom_toBottomOf="@id/main_title"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toTopOf="@id/main_title" />-->
 
         <TextView
             android:id="@+id/main_title"
@@ -53,20 +53,20 @@
             android:textColor="@color/colorWhite"
             android:textSize="32sp"
             android:visibility="visible"
-            app:layout_constraintEnd_toStartOf="@id/main_search"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/main_back_key"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/main_search"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="10dp"
-            android:src="@drawable/ic_search_white_36dp"
-            android:visibility="visible"
-            app:layout_constraintBottom_toBottomOf="@id/main_title"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/main_title" />
+<!--        <androidx.appcompat.widget.AppCompatImageView-->
+<!--            android:id="@+id/main_search"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginEnd="10dp"-->
+<!--            android:src="@drawable/ic_search_white_36dp"-->
+<!--            android:visibility="visible"-->
+<!--            app:layout_constraintBottom_toBottomOf="@id/main_title"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintTop_toTopOf="@id/main_title" />-->
 
         <TextView
             android:id="@+id/main_app_name"

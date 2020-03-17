@@ -10,6 +10,7 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        resValue "string", "google_maps_key", (project.findProperty("GOOGLE_MAPS_API_KEY") ?: "")
     }
 
     dataBinding {
@@ -58,8 +59,10 @@ dependencies {
     releaseImplementation 'com.readystatesoftware.chuck:library-no-op:1.1.0'
     debugImplementation 'com.readystatesoftware.chuck:library:1.1.0'
 
+    implementation 'com.google.android.gms:play-services-maps:17.0.0'
+
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.2.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
-    compileOnly 'com.github.pengrad:jdk9-deps:1.0'
+    testImplementation "androidx.room:room-testing:2.2.4"
 }

@@ -2,8 +2,6 @@ package com.peterstev.nc_flightradar.repos;
 
 import android.content.Context;
 
-import androidx.lifecycle.LiveData;
-
 import com.peterstev.nc_flightradar.interfaces.ApiInterface;
 import com.peterstev.nc_flightradar.interfaces.ApiServiceGenerator;
 import com.peterstev.nc_flightradar.models.airport.Airport;
@@ -12,10 +10,8 @@ import com.peterstev.nc_flightradar.roomdb.AirportDao;
 import com.peterstev.nc_flightradar.roomdb.FlightDatabase;
 
 import java.util.List;
-import java.util.concurrent.Callable;
 
 import io.reactivex.Flowable;
-import io.reactivex.Scheduler;
 import io.reactivex.schedulers.Schedulers;
 import retrofit2.Call;
 import retrofit2.Callback;

@@ -3,6 +3,8 @@ package com.peterstev.nc_flightradar.models.routes;
 
 import com.google.gson.annotations.Expose;
 
+import javax.inject.Inject;
+
 @SuppressWarnings("unused")
 public class Airline {
 
@@ -12,6 +14,13 @@ public class Airline {
     private String icao;
     @Expose
     private String name;
+
+    @Inject
+    public Airline(String iata, String icao, String name) {
+        this.iata = iata;
+        this.icao = icao;
+        this.name = name;
+    }
 
     public String getIata() {
         return iata;

@@ -1,5 +1,6 @@
 package com.peterstev.nc_flightradar.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -58,8 +59,8 @@ public class RouteActivity extends AppCompatActivity implements RoutesContract, 
         AppCompatTextView tvArr = binding.routeTvDestination;
         dialog = binding.homeProgress;
 
-        LOGGER(depAirport.toString());
-        LOGGER(arrAirport.toString());
+        LOGGER(depAirport.getLatitude() +", "+ depAirport.getLongitude());
+        LOGGER(arrAirport.getLatitude() +", "+ arrAirport.getLongitude());
 
         tvDep.setText(depAirport.getAirportName());
         tvArr.setText(arrAirport.getAirportName());
@@ -100,7 +101,7 @@ public class RouteActivity extends AppCompatActivity implements RoutesContract, 
     @Override
     public void onItemClick(Routes routes) {
         //send to map activity
-        Toast.makeText(this, "item", Toast.LENGTH_SHORT).show();
+        startActivity(new Intent(this, PolyActivity.class));
     }
 
 

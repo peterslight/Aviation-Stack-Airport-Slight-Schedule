@@ -3,7 +3,6 @@ package com.peterstev.nc_flightradar.activities;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
@@ -16,15 +15,14 @@ import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.peterstev.nc_flightradar.R;
-import com.peterstev.nc_flightradar.databinding.ActivityMainBinding;
 import com.peterstev.nc_flightradar.contracts.DefaultFragmentsContract;
+import com.peterstev.nc_flightradar.databinding.ActivityMainBinding;
 import com.peterstev.nc_flightradar.fragments.ArrivalFragment;
 import com.peterstev.nc_flightradar.fragments.Departurefragment;
 import com.peterstev.nc_flightradar.models.airport.Airport;
 import com.peterstev.nc_flightradar.view_models.MainViewModel;
 
-import java.util.List;
-
+import dagger.internal.DaggerCollections;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 
@@ -50,54 +48,15 @@ public class MainActivity extends Base implements DefaultFragmentsContract {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
         viewModel = new ViewModelProvider(this).get(MainViewModel.class);
 
-        searchBtn = binding.mainSearch;
-        etSearch = binding.mainEtSearch;
         tvTitle = binding.mainTitle;
         backBtn = binding.mainBackKey;
         backBtn.setOnClickListener(v -> onBackPressed());
-        searchBtn.setOnClickListener(v -> {
-            showSearchBar();
-        });
-        etSearch.setOnEditorActionListener((v, actionId, event) -> {
-            if (actionId == EditorInfo.IME_ACTION_SEARCH) {
-                searchQuery = etSearch.getText().toString().trim();
-                return true;
-            }
-            return false;
-        });
-
-
         tvTitle.setOnClickListener(v -> viewModel.getAllAirPorts()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(airports -> LOGGER("database list size = " + airports.size())));
 
-        etSearch.setOnTouchListener((v, event) -> {
-            final int DRAWABLE_RIGHT = 2;
-            if (event.getAction() == MotionEvent.ACTION_UP) {
-                if (event.getRawX() >= (etSearch.getRight() - etSearch.getCompoundDrawables()[DRAWABLE_RIGHT].getBounds().width())) {
-                    hideSearchBar();
-                    return true;
-                }
-            }
-            return false;
-        });
-
-
         applyFragment(new Departurefragment(), R.id.main_frame);
-    }
-
-    private void showSearchBar() {
-        etSearch.setVisibility(View.VISIBLE);
-        searchBtn.setVisibility(View.INVISIBLE);
-        tvTitle.setVisibility(View.INVISIBLE);
-    }
-
-    private void hideSearchBar() {
-        etSearch.setVisibility(View.INVISIBLE);
-        searchBtn.setVisibility(View.VISIBLE);
-        tvTitle.setVisibility(View.VISIBLE);
-        tvTitle.setVisibility(View.VISIBLE);
     }
 
     @Override
@@ -120,7 +79,6 @@ public class MainActivity extends Base implements DefaultFragmentsContract {
         tvTitle.setText(R.string.arrival);
         backBtn.setVisibility(View.VISIBLE);
         depAirport = airport;
-        hideSearchBar();
         saveAndGotoNextFragment(new ArrivalFragment());
     }
 

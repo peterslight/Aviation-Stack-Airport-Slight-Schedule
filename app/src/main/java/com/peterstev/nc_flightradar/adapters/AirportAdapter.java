@@ -2,14 +2,14 @@ package com.peterstev.nc_flightradar.adapters;
 
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
-import android.widget.Filter;
-import android.widget.Filterable;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.peterstev.nc_flightradar.components.AirportComponents;
+import com.peterstev.nc_flightradar.components.DaggerAirportComponents;
 import com.peterstev.nc_flightradar.databinding.AirportItemBinding;
 import com.peterstev.nc_flightradar.models.airport.Airport;
 

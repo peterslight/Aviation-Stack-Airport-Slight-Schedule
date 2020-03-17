@@ -10,7 +10,7 @@ import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
 
-import javax.annotation.processing.Generated;
+import javax.inject.Inject;
 
 import static com.peterstev.nc_flightradar.utils.Constants.AIRPORT_TABLE;
 
@@ -46,6 +46,26 @@ public class Airport implements Serializable {
 
     @SerializedName("phone_number")
     private String phoneNumber;
+
+    public Airport(){
+
+    }
+
+    @Inject
+    public Airport(String airportName, String countryName, String timezone, String latitude, String longitude, String cityIataCode, String countryIso2, String geonameId, String gmt, String iataCode, String icaoCode, String phoneNumber) {
+        this.airportName = airportName;
+        this.countryName = countryName;
+        this.timezone = timezone;
+        this.latitude = latitude;
+        this.longitude = longitude;
+        this.cityIataCode = cityIataCode;
+        this.countryIso2 = countryIso2;
+        this.geonameId = geonameId;
+        this.gmt = gmt;
+        this.iataCode = iataCode;
+        this.icaoCode = icaoCode;
+        this.phoneNumber = phoneNumber;
+    }
 
     public String getAirportName() {
         return airportName;

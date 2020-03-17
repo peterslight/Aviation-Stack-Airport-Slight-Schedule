@@ -4,24 +4,26 @@ package com.peterstev.nc_flightradar.models.routes;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import javax.inject.Inject;
+
 public class Arrival {
 
     @Expose
-    private Object actual;
+    private String actual;
     @SerializedName("actual_runway")
-    private Object actualRunway;
+    private String actualRunway;
     @Expose
     private String airport;
     @Expose
-    private Object baggage;
+    private String baggage;
     @Expose
-    private Object delay;
+    private String delay;
     @Expose
     private String estimated;
     @SerializedName("estimated_runway")
-    private Object estimatedRunway;
+    private String estimatedRunway;
     @Expose
-    private Object gate;
+    private String gate;
     @Expose
     private String iata;
     @Expose
@@ -29,23 +31,40 @@ public class Arrival {
     @Expose
     private String scheduled;
     @Expose
-    private Object terminal;
+    private String terminal;
     @Expose
     private String timezone;
 
-    public Object getActual() {
+    @Inject
+    public Arrival(String actual, String actualRunway, String airport, String baggage, String delay, String estimated, String estimatedRunway, String gate, String iata, String icao, String scheduled, String terminal, String timezone) {
+        this.actual = actual;
+        this.actualRunway = actualRunway;
+        this.airport = airport;
+        this.baggage = baggage;
+        this.delay = delay;
+        this.estimated = estimated;
+        this.estimatedRunway = estimatedRunway;
+        this.gate = gate;
+        this.iata = iata;
+        this.icao = icao;
+        this.scheduled = scheduled;
+        this.terminal = terminal;
+        this.timezone = timezone;
+    }
+
+    public String getActual() {
         return actual;
     }
 
-    public void setActual(Object actual) {
+    public void setActual(String actual) {
         this.actual = actual;
     }
 
-    public Object getActualRunway() {
+    public String getActualRunway() {
         return actualRunway;
     }
 
-    public void setActualRunway(Object actualRunway) {
+    public void setActualRunway(String actualRunway) {
         this.actualRunway = actualRunway;
     }
 
@@ -57,19 +76,19 @@ public class Arrival {
         this.airport = airport;
     }
 
-    public Object getBaggage() {
+    public String getBaggage() {
         return baggage;
     }
 
-    public void setBaggage(Object baggage) {
+    public void setBaggage(String baggage) {
         this.baggage = baggage;
     }
 
-    public Object getDelay() {
+    public String getDelay() {
         return delay;
     }
 
-    public void setDelay(Object delay) {
+    public void setDelay(String delay) {
         this.delay = delay;
     }
 
@@ -81,19 +100,19 @@ public class Arrival {
         this.estimated = estimated;
     }
 
-    public Object getEstimatedRunway() {
+    public String getEstimatedRunway() {
         return estimatedRunway;
     }
 
-    public void setEstimatedRunway(Object estimatedRunway) {
+    public void setEstimatedRunway(String estimatedRunway) {
         this.estimatedRunway = estimatedRunway;
     }
 
-    public Object getGate() {
+    public String getGate() {
         return gate;
     }
 
-    public void setGate(Object gate) {
+    public void setGate(String gate) {
         this.gate = gate;
     }
 
@@ -121,11 +140,11 @@ public class Arrival {
         this.scheduled = scheduled;
     }
 
-    public Object getTerminal() {
+    public String getTerminal() {
         return terminal;
     }
 
-    public void setTerminal(Object terminal) {
+    public void setTerminal(String terminal) {
         this.terminal = terminal;
     }
 

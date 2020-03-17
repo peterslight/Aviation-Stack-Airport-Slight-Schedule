@@ -3,10 +3,12 @@ package com.peterstev.nc_flightradar.models.routes;
 
 import com.google.gson.annotations.Expose;
 
+import javax.inject.Inject;
+
 public class Flight {
 
     @Expose
-    private Object codeshared;
+    private String codeshared;
     @Expose
     private String iata;
     @Expose
@@ -14,11 +16,19 @@ public class Flight {
     @Expose
     private String number;
 
-    public Object getCodeshared() {
+    @Inject
+    public Flight(String codeshared, String iata, String icao, String number) {
+        this.codeshared = codeshared;
+        this.iata = iata;
+        this.icao = icao;
+        this.number = number;
+    }
+
+    public String getCodeshared() {
         return codeshared;
     }
 
-    public void setCodeshared(Object codeshared) {
+    public void setCodeshared(String codeshared) {
         this.codeshared = codeshared;
     }
 
